@@ -1,0 +1,20 @@
+minimumReleaseAgeStrict: true
+minimumReleaseAge: 1440
+minimumReleaseAgeExclude:
+  # Eve 0.44.4's current official scaffold resolves the matching AI SDK release cohort.
+  - "@ai-sdk/*"
+  - ai
+  - "@vercel/*"
+  - "@onkernel/*"
+  - eve
+  # These browser and rendering transitive releases are locked by the current Eve UI scaffold.
+  - baseline-browser-mapping
+  - caniuse-lite
+  - electron-to-chromium
+  - mermaid
+  - picomatch
+  - systeminformation
+allowBuilds:
+  cbor-extract: false
+  esbuild: true
+  sharp: true

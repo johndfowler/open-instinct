@@ -1,0 +1,54 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "globalEnv": [
+    "BETTER_AUTH_SECRET",
+    "BETTER_AUTH_URL",
+    "DATABASE_URL",
+    "EVE_NEXT_PRODUCTION_ORIGIN",
+    "HOSTED_SECRET_ENCRYPTION_KEY",
+    "SECRET_ENCRYPTION_KEY",
+    "KERNEL_API_KEY",
+    "VERCEL_ENV"
+  ],
+  "tasks": {
+    "build:app": {
+      "dependsOn": ["^build:app"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "build:vercel": {
+      "dependsOn": ["db:migrate"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "db:migrate": {
+      "cache": false,
+      "env": ["DATABASE_URL_UNPOOLED"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"]
+    },
+    "dev:app": {
+      "cache": false,
+      "persistent": true
+    },
+    "deploy:app": {
+      "cache": false
+    },
+    "format:check": {
+      "outputs": []
+    },
+    "knip": {
+      "outputs": []
+    },
+    "lint:app": {
+      "outputs": []
+    },
+    "start:app": {
+      "cache": false,
+      "persistent": true
+    },
+    "test:app": {
+      "outputs": []
+    },
+    "types:check:app": {
+      "outputs": ["*.tsbuildinfo"]
+    }
+  }
+}
