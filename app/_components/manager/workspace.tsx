@@ -36,7 +36,8 @@ const priceFormatter = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
-const LINQ_PHONE_NUMBER = "REDACTED";
+const LINQ_PHONE_NUMBER =
+  process.env.NEXT_PUBLIC_LINQ_PHONE_NUMBER ?? "+12025550123";
 
 export function WorkspaceManager() {
   const { busy, error, mutate, snapshot } = useManager();
@@ -126,8 +127,8 @@ function ChannelsSection({ browserReady }: { readonly browserReady: boolean }) {
       </div>
       <p className="type-caption text-muted-foreground">
         {browserReady
-          ? "WebChat is ready. iMessage opens +1 REDACTED."
-          : "iMessage opens +1 REDACTED. KERNEL_API_KEY is required to enable WebChat."}
+          ? `WebChat is ready. iMessage opens ${LINQ_PHONE_NUMBER}.`
+          : `iMessage opens ${LINQ_PHONE_NUMBER}. KERNEL_API_KEY is required to enable WebChat.`}
       </p>
     </section>
   );
